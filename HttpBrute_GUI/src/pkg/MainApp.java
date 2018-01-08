@@ -52,7 +52,7 @@ public class MainApp extends Application {
 		//die.
 		userTF.setOnKeyTyped(new EventHandler<KeyEvent>() {
 			public <KeyEvent> void handle(KeyEvent ke) {
-				
+				//ÀÀאÀÂÀÀאÀÀאÔןקןכûמאצההצהאזיחאחיכאיחג ÐÀÁÎÒÀÉ ÁË‗ÒÜ
 			}
 		});
 		grid.add(userTF, 1, 1);
