@@ -49,7 +49,7 @@ public class MainApp extends Application {
 		grid.add(userName, 0, 1);
 
 		TextField userTF = new TextField();
-		userTF.setOnKeyTyped(new EventHandler<? super KeyEvent> );
+		userTF.setOnKeyTyped(new EventHandler<? super KeyEvent>);
 		grid.add(userTF, 1, 1);
 
 		Label pwd = new Label("Pass:");
