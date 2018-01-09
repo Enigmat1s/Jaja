@@ -51,6 +51,7 @@ public class MainApp extends Application {
 		
 		Analysed thread = new Analysed(logtxt, min, max);
 		
+		
 		Button gobtn = new Button();
 		gobtn.setText("Who is there?");
 		gobtn.setOnAction(new EventHandler<ActionEvent>() {
