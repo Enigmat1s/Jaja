@@ -12,6 +12,7 @@ import javafx.stage.*;
 
 public class MainApp extends Application {
 	
+	public String adr = null;
 	public String logtxt = null;
 	public Integer min = 3;
 	public Integer max = 5;
@@ -26,28 +27,39 @@ public class MainApp extends Application {
 		
 		GridPane grid = new GridPane();
 		grid.setAlignment(Pos.CENTER);
-		grid.setHgap(10);
-		grid.setVgap(10);
+		grid.setHgap(5);
+		grid.setVgap(5);
 		grid.setPadding(new Insets(25, 25, 25, 25));
 		
-		Text maintitle = new Text("Welcome");
+		Text maintitle = new Text("Http Bruteforce");
 		maintitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
 		grid.add(maintitle, 0, 0, 2, 1);
 		
 		Label userName = new Label("User:");
-		grid.add(userName, 0, 1);
+		grid.add(userName, 0, 2);
+		
+		TextField addr = new TextField();
+		//addr.resize(2, 1);
+		grid.add(addr, 1, 1);
+		
+		Label adddr = new Label("URL:");
+		grid.add(adddr, 0, 1);
 
 		TextField userTF = new TextField();
-		grid.add(userTF, 1, 1);
+		grid.add(userTF, 1, 2);
 
-		Label pwd = new Label("Pass:");
-		grid.add(pwd, 0, 2);
+		//Label pwd = new Label("Pass:");
+		//grid.add(pwd, 0, 3);
 
 		TextField minBox = new TextField();
-		grid.add(minBox, 1, 2);
+		grid.add(minBox, 0, 3);
+		
+		Text totx = new Text("            to");
+		totx.setTextAlignment(TextAlignment.CENTER);
+		grid.add(totx, 1, 3);
 		
 		TextField maxBox = new TextField();
-		grid.add(maxBox, 1, 2);
+		grid.add(maxBox, 2, 3);
 		
 		Analysed thread = new Analysed(logtxt, min, max);
 		
@@ -58,12 +70,16 @@ public class MainApp extends Application {
 			@Override
 			public void handle(ActionEvent event) {
 				logtxt = userTF.getText();
-				System.out.println(logtxt);
+				adr = addr.getText();
+				min = Integer.parseInt(minBox.getText());
+				max = Integer.parseInt(maxBox.getText());
+				thread.bruter(adr, logtxt, min, max);
+				System.out.println(adr + logtxt + min + max);
 			}
 		});
 
-		Scene scene = new Scene(grid, 300, 250);
-		grid.add(gobtn, 1, 3);
+		Scene scene = new Scene(grid, 350, 200);
+		grid.add(gobtn, 1, 5);
 	    curStg.setScene(scene);
 	    curStg.show();
 	    
