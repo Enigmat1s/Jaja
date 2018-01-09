@@ -12,7 +12,9 @@ import javafx.stage.*;
 
 public class MainApp extends Application {
 	
-	String logtxt = null;
+	public String logtxt = null;
+	public Integer min = 3;
+	public Integer max = 5;
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -21,19 +23,6 @@ public class MainApp extends Application {
 	@Override
 	public void start(Stage curStg) throws Exception {
 		curStg.setTitle("Knock-Knock!");
-		Button gobtn = new Button();
-		gobtn.setText("Who is there?");
-		gobtn.setOnAction(new EventHandler<ActionEvent>() {
-			
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println(logtxt);
-			}
-		});
-		
-		public void changeLogVar() {
-			logtxt = userTF.GetText();
-		}
 		
 		GridPane grid = new GridPane();
 		grid.setAlignment(Pos.CENTER);
@@ -49,25 +38,35 @@ public class MainApp extends Application {
 		grid.add(userName, 0, 1);
 
 		TextField userTF = new TextField();
-		//die.
-		userTF.setOnKeyTyped(new EventHandler<KeyEvent>() {
-			public <KeyEvent> void handle(KeyEvent ke) {
-				//¿¿‡¿¬¿¿‡¿¿‡‘Ô˜ÔÎ˚Ó‡ˆ‰‰ˆ‰‡ÊÈÁ‡ÁÈÎ‡ÈÁ‚ –¿¡Œ“¿… ¡Àﬂ“‹
-			}
-		});
 		grid.add(userTF, 1, 1);
 
 		Label pwd = new Label("Pass:");
 		grid.add(pwd, 0, 2);
 
-		PasswordField pwdBox = new PasswordField();
-		grid.add(pwdBox, 1, 2);
+		TextField minBox = new TextField();
+		grid.add(minBox, 1, 2);
+		
+		TextField maxBox = new TextField();
+		grid.add(maxBox, 1, 2);
+		
+		Analysed thread = new Analysed(logtxt, min, max);
+		
+		Button gobtn = new Button();
+		gobtn.setText("Who is there?");
+		gobtn.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				logtxt = userTF.getText();
+				System.out.println(logtxt);
+			}
+		});
 
 		Scene scene = new Scene(grid, 300, 250);
 		grid.add(gobtn, 1, 3);
 	    curStg.setScene(scene);
 	    curStg.show();
-		
+	    
 	}
 
 }
