@@ -8,6 +8,7 @@ import javafx.scene.*;
 import javafx.scene.text.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.*;
 
 public class MainApp extends Application {
@@ -65,14 +66,22 @@ public class MainApp extends Application {
 		
 		Button gobtn = new Button();
 		gobtn.setText("Who is there?");
+		Alert alert = new Alert (AlertType.ERROR, "Dat shit is not numbers!");
 		gobtn.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
 			public void handle(ActionEvent event) {
 				logtxt = userTF.getText();
 				adr = addr.getText();
-				min = Integer.parseInt(minBox.getText());
-				max = Integer.parseInt(maxBox.getText());
+				try {
+					min = Integer.parseInt(minBox.getText());
+					max = Integer.parseInt(maxBox.getText());
+				}
+				catch (Exception e) {
+					alert.showAndWait();
+					System.out.println("Dat shit is not numbers!");
+				}
+				if (adr != "" && logtxt != "" && min < max)
 				thread.bruter(adr, logtxt, min, max);
 				System.out.println(adr + logtxt + min + max);
 			}
